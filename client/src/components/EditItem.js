@@ -21,7 +21,6 @@ export const EditItem = ({ history, match }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     const item = {
       id: match.params.id,
       name,
@@ -29,7 +28,7 @@ export const EditItem = ({ history, match }) => {
       unit,
       status: false,
     };
-    console.log(item);
+    // console.log(item);
     axios
       .put(`/api/items/edit/${match.params.id}`, item)
       .then((res) => console.log(res.data));

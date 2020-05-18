@@ -8,6 +8,7 @@ export const ShoppingList = () => {
     getItems(); // eslint-disable-next-line
   }, []);
   // console.log(items);
+
   const showItems = (items) => {
     let result = null;
     if (items.length > 0) {

@@ -3,7 +3,7 @@ import { v1 } from "uuid";
 import { GlobalContext } from "../contexts/GlobalContext";
 
 export const CreateItem = ({ history }) => {
-  const { addItem } = useContext(GlobalContext);
+  const { addItem, getItems } = useContext(GlobalContext);
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [unit, setUnit] = useState("");
@@ -19,6 +19,7 @@ export const CreateItem = ({ history }) => {
     };
     addItem(newItem);
     history.push("/");
+    getItems();
   };
   return (
     <div>
