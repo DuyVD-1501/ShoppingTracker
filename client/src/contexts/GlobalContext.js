@@ -47,31 +47,6 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  // async function updateItem(id) {
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   try {
-  //     const res = await axios.put(`/api/items/${id}`, config);
-  //     dispatch({
-  //       type: "ADD_ITEM",
-  //       payload: res.data.data, // res.data.data,
-  //     });
-  //     const res1 = await axios.get("/api/items");
-  //     dispatch({
-  //       type: "GET_ITEMS",
-  //       payload: res1.data.data,
-  //     });
-  //   } catch (err) {
-  //     dispatch({
-  //       type: "ITEM_ERROR",
-  //       payload: err.response.data.error,
-  //     });
-  //   }
-  // }
-
   async function addItem(item) {
     const config = {
       headers: {
@@ -100,10 +75,7 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         deleteItem,
         addItem,
-        // updateItem,
         getItems,
-
-        //   getProducts,
       }}
     >
       {children}

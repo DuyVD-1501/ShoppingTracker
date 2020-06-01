@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { GlobalContext } from "../contexts/GlobalContext";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getItems, deleteItem } from "../actions/itemActions";
 
 export const ShoppingItem = ({ item, index }) => {
   const [status, setStatus] = useState(item.status);
-  const { deleteItem, getItems } = useContext(GlobalContext);
-
+  const dispatch = useDispatch();
   const onClick = () => {
     changeStatus();
     saveStatus();
-    getItems();
+    dispatch(getItems());
   };
 
   const changeStatus = () => {
@@ -38,7 +38,7 @@ export const ShoppingItem = ({ item, index }) => {
         <a
           href="#Link"
           style={{ color: "red" }}
-          onClick={() => deleteItem(item._id)}
+          onClick={() => dispatch(deleteItem(item._id))}
         >
           Delete
         </a>

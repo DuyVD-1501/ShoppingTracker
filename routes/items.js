@@ -7,10 +7,14 @@ const {
   getItem,
   editItem,
 } = require("../controllers/items");
+const auth = require("../middleware/auth");
 
-router.route("/").get(getItems).post(addItem);
+// router.route("/").get(getItems).post(addItem);
+// router.route("/:id").delete(deleteItem).get(getItem);
+// router.route("/edit/:id").put(editItem);
 
-router.route("/:id").delete(deleteItem).get(getItem);
+router.route("/").get(getItems).post(auth, addItem);
+router.route("/:id").delete(auth, deleteItem).get(getItem);
 router.route("/edit/:id").put(editItem);
 
 module.exports = router;

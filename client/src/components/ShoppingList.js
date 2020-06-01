@@ -1,11 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { ShoppingItem } from "./ShoppingItem";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { getItems } from "../actions/itemActions";
+import { useSelector, useDispatch } from "react-redux";
 
 export const ShoppingList = () => {
-  const { items, getItems } = useContext(GlobalContext);
+  const { items } = useSelector((state) => state.items);
+  const dispatch = useDispatch();
   useEffect(() => {
-    getItems(); // eslint-disable-next-line
+    dispatch(getItems()); // eslint-disable-next-line
   }, []);
   // console.log(items);
 

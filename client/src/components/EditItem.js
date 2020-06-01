@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getItems } from "../actions/itemActions";
 import axios from "axios";
-import { GlobalContext } from "../contexts/GlobalContext";
 
 export const EditItem = ({ history, match }) => {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [unit, setUnit] = useState("");
-  const { getItems } = useContext(GlobalContext);
+  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get(`/api/items/${match.params.id}`)
@@ -32,9 +33,8 @@ export const EditItem = ({ history, match }) => {
     axios
       .put(`/api/items/edit/${match.params.id}`, item)
       .then((res) => console.log(res.data));
-    history.push("/");
-    getItems();
-    window.location = "/";
+    history.push("/list");
+    dispatch(getItems());
   };
 
   return (

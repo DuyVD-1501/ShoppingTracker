@@ -1,12 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { v1 } from "uuid";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { useDispatch } from "react-redux";
+import { getItems, addItem } from "../actions/itemActions";
 
 export const CreateItem = ({ history }) => {
-  const { addItem, getItems } = useContext(GlobalContext);
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [unit, setUnit] = useState("");
+  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -17,9 +18,9 @@ export const CreateItem = ({ history }) => {
       unit,
       status: false,
     };
-    addItem(newItem);
-    history.push("/");
-    getItems();
+    dispatch(addItem(newItem));
+    history.push("/list");
+    dispatch(getItems());
   };
   return (
     <div>

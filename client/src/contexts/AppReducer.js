@@ -6,14 +6,7 @@ export default (state, action) => {
         loading: false,
         items: action.payload,
       };
-    // case "UPDATE_ITEM":
-    //   const updateditems = state.items;
-    //   const index = state.items.indexOf(action.payload);
-    //   updateditems[index] = action.payload;
-    //   return {
-    //     ...state,
-    //     items: updateditems,
-    //   };
+
     case "DELETE_ITEM":
       return {
         ...state,
@@ -29,6 +22,7 @@ export default (state, action) => {
         ...state,
         error: action.payload,
       };
+
     default:
       return state;
   }

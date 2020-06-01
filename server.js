@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
@@ -8,16 +7,17 @@ const connectDB = require("./config/db");
 dotenv.config({ path: "./config/config.env" });
 connectDB();
 
-const items = require("./routes/items");
-
 const app = express();
 
 app.use(express.json());
+
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-app.use("/api/items", items);
+app.use("/api/items", require("./routes/items"));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
