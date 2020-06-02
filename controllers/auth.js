@@ -49,7 +49,7 @@ exports.authUser = async (req, res, next) => {
 exports.getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
-    res.json({ user });
+    res.json( user );
   } catch (error) {
     if (err.name === "ValidationError") {
       const messages = Object.values(err.errors).map((val) => val.message);
